@@ -18,7 +18,7 @@
         this.events = {}; // Event Listeners
         this.params = []; // Named parameters
         this.state = null; // Event state
-        this.version = '0.5'; // Version
+        this.version = '0.5.0'; // Version
         // Anchor
         this.anchor = {
             defaultHash : config.pushState ? window.location.href.replace(window.location.pathname, '/') : window.location.hash,
