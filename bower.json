@@ -1,9 +1,10 @@
 {
   "name": "Grapnel.js",
-  "version": "0.4.2",
-  "homepage": "https://github.com/EngineeringMode/Grapnel.js",
+  "version": "0.4.3",
+  "homepage": "https://github.com/tmanderson/Grapnel.js",
   "authors": [
-    "Greg Sabia Tucker <greg@artificer.io>"
+    "Greg Sabia Tucker <greg@artificer.io>",
+    "Mitch Anderson <mitch@iammitch.com>"
   ],
   "description": "The smallest (1100 bytes gzipped!) JavaScript Router with Named Parameters",
   "main": "dist/grapnel.min.js",
