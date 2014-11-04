@@ -27,12 +27,12 @@
             },
             set : function(anchor){
                 if(config.pushState) {
-                    window.history.pushState(
+                    window.history.replaceState(
                         { prev: window.location.pathname, title: document.title },
                         document.title, (anchor || '')
                     );
 
-		    window.onpopstate(window.history.state);
+                    window.onpopstate(window.history.state);
                 }
                 else {
                     window.location.hash = (!anchor) ? '' : anchor;
