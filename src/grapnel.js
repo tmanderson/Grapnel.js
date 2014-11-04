@@ -21,15 +21,16 @@
         this.version = '0.4.3'; // Version
         // Anchor
         this.anchor = {
-            defaultHash : config && config.root || window.location.hash,
+            defaultHash : (config && config.root.replace(/\/$/, '') + '/') || window.location.hash,
             get : function(){
                 return (config.pushState ? window.location.pathname : window.location.hash).replace('#', '');
             },
             set : function(anchor){
                 if(config.pushState) {
-                    window.history.replaceState(
+                    window.history.pushState(
                         { prev: window.location.pathname, title: document.title },
-                        document.title, (anchor || '')
+                        document.title,
+                        this.defaultHash + (anchor || '')
                     );
 
                     window.onpopstate(window.history.state);
