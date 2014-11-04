@@ -18,7 +18,7 @@
         this.events = {}; // Event Listeners
         this.params = []; // Named parameters
         this.state = null; // Event state
-        this.version = '0.4.6'; // Version
+        this.version = '0.5'; // Version
         // Anchor
         this.anchor = {
             defaultHash : config.pushState ? window.location.href.replace(window.location.pathname, '/') : window.location.hash,
@@ -30,7 +30,7 @@
                     window.history.pushState(
                         { prev: window.location.pathname, title: document.title },
                         document.title,
-                        this.defaultHash + (anchor || '')
+                        this.defaultHash + (anchor.replace(/^\//, '') || '')
                     );
 
                     window.onpopstate(window.history.state);
