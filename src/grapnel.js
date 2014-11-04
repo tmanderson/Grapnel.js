@@ -11,22 +11,31 @@
 
 (function(root){
 
-    function Grapnel(){
+    function Grapnel(config){
         "use strict";
 
         var self = this; // Scope reference
         this.events = {}; // Event Listeners
         this.params = []; // Named parameters
         this.state = null; // Event state
-        this.version = '0.4.2'; // Version
+        this.version = '0.4.3'; // Version
         // Anchor
         this.anchor = {
-            defaultHash : window.location.hash,
+            defaultHash : config && config.root || window.location.hash,
             get : function(){
-                return (window.location.hash) ? window.location.hash.split('#')[1] : '';
+                return (config.pushState ? window.location.pathname : window.location.hash).replace('#', '');
             },
             set : function(anchor){
-                window.location.hash = (!anchor) ? '' : anchor;
+                if(config.pushState) {
+                    window.history.pushState(
+                        { prev: window.location.pathname, title: document.title },
+                        document.title, (anchor || '')
+                    );
+                }
+                else {
+                    window.location.hash = (!anchor) ? '' : anchor;
+                }
+
                 return self;
             },
             clear : function(){
@@ -71,11 +80,17 @@
         }
         // Check current hash change event -- if one exists already, add it to the queue
         if(typeof window.onhashchange === 'function') this.on('hashchange', window.onhashchange);
+        if(typeof window.onpopstate === 'function') this.on('hashchange', window.onpopstate);
+
         /**
          * Hash change event
          * TODO: increase browser compatibility. "window.onhashchange" can be supplemented in older browsers with setInterval()
         */
         window.onhashchange = function(){
+            self.trigger('hashchange');
+        }
+
+        window.onpopstate = function() {
             self.trigger('hashchange');
         }
 
