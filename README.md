@@ -1,4 +1,4 @@
-Grapnel.js
+Grapnel.js (with pushState support)
 ==========
 
 #### The smallest (1100 bytes gzipped!) JavaScript Router with Named Parameters & Event Listening. Lots of other Features too!
@@ -8,7 +8,7 @@ Grapnel.js
 ## Router
 
 ```javascript
-var router = new Grapnel();
+var router = new Grapnel({ pushState: false });
 
 router.get('products/:category/:id?', function(req){
     var id = req.params.id,

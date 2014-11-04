@@ -31,6 +31,8 @@
                         { prev: window.location.pathname, title: document.title },
                         document.title, (anchor || '')
                     );
+
+		    window.onpopstate(window.history.state);
                 }
                 else {
                     window.location.hash = (!anchor) ? '' : anchor;
